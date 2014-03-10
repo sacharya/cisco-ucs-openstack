@@ -63,14 +63,17 @@ classIds = [
 ]
 ucs.getObjects(classIds)
 
-params = {ComputePool.NAME:"suda-api-test-pool",
+params = {ComputePool.NAME:"api-test-pool",
           ComputePool.POLICY_OWNER:"local",
-          ComputePool.DESCR:"suda api test pool",
-          ComputePool.DN:"org-root/suda-api-test-pool"}
+          ComputePool.DESCR:"api test pool",
+          ComputePool.DN:"org-root/api-test-pool"}
 
 # Add a new compute pool
-obj = ucs.getObject(classId=ComputePool.ClassId(),level={ComputePool.DN:"org-root/compute-api-test-pool"})
-ucs.removeObject(obj)
+try:
+    obj = ucs.getObject(classId=ComputePool.ClassId(),level={ComputePool.DN:"org-root/compute-pool-api-test-pool"})
+    ucs.removeObject(obj)
+except:
+    pass
 obj = ucs.getObject(classId=ComputePool.ClassId())
 ucs.addObject(obj=obj, classId=ComputePool.ClassId(), params=params)
 obj = ucs.getObject(classId=ComputePool.ClassId())
